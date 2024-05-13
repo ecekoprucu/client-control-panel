@@ -7,20 +7,23 @@ import { useSelector } from "react-redux";
 import _ from "lodash";
 // Components
 import { LoginPage } from "@/views/Login";
+// Types
 import { IRootState } from "@/redux/store";
 
 const RootPage = () => {
-    const user = useSelector((state: IRootState) => state.auth.user);
-    const storedUser = JSON.parse(localStorage.getItem("user") ?? "{}");
+  const user = useSelector((state: IRootState) => state.auth.user);
+  const storedUser = JSON.parse(localStorage.getItem("user") ?? "{}");
 
-    const location = useLocation();
+  const location = useLocation();
 
-    if (_.isEmpty(user) && _.isEmpty(storedUser)) {
-        return <LoginPage />;
-    }
-    
-    <Navigate to={location.state?.from || location.state?.redirectPath || ROUTE_APP} replace />;
-    
-}
+  if (_.isEmpty(user) && _.isEmpty(storedUser)) {
+    return <LoginPage />;
+  }
+
+  <Navigate
+    to={location.state?.from || location.state?.redirectPath || ROUTE_APP}
+    replace
+  />;
+};
 
 export default RootPage;
