@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 // MUI
-import { ThemeProvider, responsiveFontSizes } from "@mui/material";
-
+import { ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
+import CssBaseline from '@mui/material/CssBaseline';
 // Redux
 import { useSelector } from "react-redux";
 import { IRootState } from "@/redux/store";
@@ -22,6 +22,7 @@ const MasterPage = () => {
     
     return (
         <ThemeProvider theme={muiTheme}>
+            <CssBaseline />
             <Outlet />
         </ThemeProvider>
     );
