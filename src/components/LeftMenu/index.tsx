@@ -50,7 +50,7 @@ export const LeftMenu = () => {
               borderRadius: 4,
               "&.Mui-selected": {
                 backgroundColor: "#fff",
-                border: "1px solid gray",
+                boxShadow: 2,
                 borderRadius: 4,
 
                 "&:hover": {
@@ -73,7 +73,7 @@ export const LeftMenu = () => {
               borderRadius: 4,
               "&.Mui-selected": {
                 backgroundColor: "#fff",
-                border: "1px solid gray",
+                boxShadow: 2,
                 borderRadius: 4,
 
                 "&:hover": {

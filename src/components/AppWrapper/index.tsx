@@ -22,8 +22,13 @@ export const AppWrapper = ({ children }: AppWrapperProps) => {
       <Stack direction={"row"}>
         {/* Left Menu */}
         <LeftMenu />
-        <Stack width={`calc(100% - ${theme?.leftMenu?.width ?? 0})`}>
-          <Breadcrumbs aria-label="breadcrumb">
+        <Stack width={`calc(100% - ${theme?.leftMenu?.width ?? 0}px)`}>
+          <Breadcrumbs
+            sx={{
+              px: 3,
+            }}
+            aria-label="breadcrumb"
+          >
             {segments.map((segment, index) => {
               return (
                 <Link
