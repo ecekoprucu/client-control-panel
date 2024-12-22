@@ -5,10 +5,14 @@ import {
   useTheme,
 } from "@mui/material";
 import { Divider, Drawer, List, ListItem } from "@mui/material";
-import { Logout as LogoutIcon, Home as HomeIcon } from "@mui/icons-material";
+import {
+  Logout as LogoutIcon,
+  Home as HomeIcon,
+  People as PeopleIcon,
+} from "@mui/icons-material";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import { ROUTE_APP } from "@/router/routes";
+import { ROUTE_APP, ROUTE_CLIENTS } from "@/router/routes";
 
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/slice/authSlice";
@@ -43,6 +47,7 @@ export const LeftMenu = () => {
         <ListItem>
           <ListItemButton
             sx={{
+              borderRadius: 4,
               "&.Mui-selected": {
                 backgroundColor: "#fff",
                 border: "1px solid gray",
@@ -60,6 +65,29 @@ export const LeftMenu = () => {
               <HomeIcon />
             </ListItemIcon>
             <ListItemText>Dashboard</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <ListItem>
+          <ListItemButton
+            sx={{
+              borderRadius: 4,
+              "&.Mui-selected": {
+                backgroundColor: "#fff",
+                border: "1px solid gray",
+                borderRadius: 4,
+
+                "&:hover": {
+                  backgroundColor: "#ebebeb",
+                },
+              },
+            }}
+            onClick={() => navigate(`${ROUTE_CLIENTS}`)}
+            selected={pathname === `${ROUTE_APP}/${ROUTE_CLIENTS}`}
+          >
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText>Clients</ListItemText>
           </ListItemButton>
         </ListItem>
       </List>

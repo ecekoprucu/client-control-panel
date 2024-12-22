@@ -30,11 +30,11 @@ export const routes = createBrowserRouter([
             path: "",
             element: <DashboardPage />,
           },
+          {
+            path: ROUTE_CLIENTS,
+            element: <ClientsPage />,
+          },
         ],
-      },
-      {
-        path: ROUTE_CLIENTS,
-        element: <ClientsPage />,
       },
       {
         path: "*",

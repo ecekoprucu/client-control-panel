@@ -26,7 +26,16 @@ export const AppWrapper = ({ children }: AppWrapperProps) => {
           <Breadcrumbs aria-label="breadcrumb">
             {segments.map((segment, index) => {
               return (
-                <Link href={`${segment}`} key={index}>
+                <Link
+                  color={
+                    index === segments.length - 1 ? "primary" : "textDisabled"
+                  }
+                  href={`/${segment}`}
+                  sx={{
+                    textDecoration: "none",
+                  }}
+                  key={index}
+                >
                   {segment === "" ? "Home" : _.capitalize(segment)}
                 </Link>
               );
