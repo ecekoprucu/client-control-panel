@@ -8,7 +8,7 @@ import { Divider, Drawer, List, ListItem } from "@mui/material";
 import { Logout as LogoutIcon, Home as HomeIcon } from "@mui/icons-material";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import { ROUTE_APP, ROUTE_DASHBOARD } from "@/router/routes";
+import { ROUTE_APP } from "@/router/routes";
 
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/slice/authSlice";
@@ -32,6 +32,8 @@ export const LeftMenu = () => {
         "& .MuiDrawer-paper": {
           width: theme.leftMenu?.width ?? 0,
           boxSizing: "border-box",
+          backgroundColor: "#f7f7f7",
+          justifyContent: "space-between",
         },
       }}
       variant="permanent"
@@ -40,8 +42,19 @@ export const LeftMenu = () => {
       <List>
         <ListItem>
           <ListItemButton
-            onClick={() => navigate(`${ROUTE_APP}/${ROUTE_DASHBOARD}`)}
-            selected={pathname === `${ROUTE_APP}/${ROUTE_DASHBOARD}`}
+            sx={{
+              "&.Mui-selected": {
+                backgroundColor: "#fff",
+                border: "1px solid gray",
+                borderRadius: 4,
+
+                "&:hover": {
+                  backgroundColor: "#ebebeb",
+                },
+              },
+            }}
+            onClick={() => navigate(`${ROUTE_APP}`)}
+            selected={pathname === `${ROUTE_APP}`}
           >
             <ListItemIcon>
               <HomeIcon />
@@ -50,10 +63,19 @@ export const LeftMenu = () => {
           </ListItemButton>
         </ListItem>
       </List>
-      <Divider />
+
       <List>
+        <Divider />
         <ListItem>
-          <ListItemButton onClick={() => dispatch(logout())}>
+          <ListItemButton
+            sx={{
+              "&:hover": {
+                backgroundColor: "#ebebeb",
+                borderRadius: 4,
+              },
+            }}
+            onClick={() => dispatch(logout())}
+          >
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>

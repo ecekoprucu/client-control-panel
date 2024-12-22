@@ -12,11 +12,12 @@ import _ from "lodash";
 import { IRootState } from "@/redux/store";
 
 function ProtectedRoute({ children }: { children: JSX.Element }) {
-  const user = useSelector((state: IRootState) => state.auth.user);
+  const user = useSelector((state: IRootState) => state?.auth?.user);
   const storedUser = JSON.parse(localStorage.getItem("user") ?? "{}");
 
   const { pathname } = useLocation();
 
+  console.log("protectedroute");
   if (_.isEmpty(user) && _.isEmpty(storedUser)) {
     return (
       <Navigate to={ROUTE_LOGIN} state={{ redirectPath: pathname }} replace />
