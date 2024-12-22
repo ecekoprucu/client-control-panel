@@ -4,6 +4,9 @@ import { TextInput } from "@/components/TextInput";
 import { Box, Button, Grid2, Typography, useTheme } from "@mui/material";
 // React
 import { useCallback, useState } from "react";
+// Redux
+import { useDispatch } from "react-redux";
+import { login as redux_login } from "@/redux/slice/authSlice";
 // Enums
 import { ENUM_LOADING_TYPES } from "@/enums/loadingTypes";
 
@@ -18,20 +21,17 @@ export const LoginPage = () => {
 
   const theme = useTheme();
 
+  const dispatch = useDispatch();
+
   const handleLogin = useCallback(() => {
     setLoadingState(ENUM_LOADING_TYPES.ENUM_PENDING);
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        email: userInfo.email,
-      })
-    );
+    dispatch(redux_login(userInfo));
     const timeout = setTimeout(() => {
       setLoadingState(ENUM_LOADING_TYPES.ENUM_SUCCESS);
     }, 2000);
 
     return () => clearTimeout(timeout);
-  }, [userInfo]);
+  }, [userInfo, dispatch]);
 
   return (
     <Box

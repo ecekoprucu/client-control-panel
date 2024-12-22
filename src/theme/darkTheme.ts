@@ -18,4 +18,7 @@ export const Dark_Theme = createTheme({
   typography: {
     fontFamily: "Roboto, sans-serif",
   },
+  leftMenu: {
+    width: 280,
+  }
 });

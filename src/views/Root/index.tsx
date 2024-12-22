@@ -1,6 +1,6 @@
 // Router
 import { Navigate, useLocation } from "react-router-dom";
-import { ROUTE_APP } from "@/router/routes";
+import { ROUTE_APP, ROUTE_DASHBOARD } from "@/router/routes";
 // Redux
 import { useSelector } from "react-redux";
 // Helpers
@@ -20,10 +20,16 @@ const RootPage = () => {
     return <LoginPage />;
   }
 
-  <Navigate
-    to={location.state?.from || location.state?.redirectPath || ROUTE_APP}
-    replace
-  />;
+  return (
+    <Navigate
+      to={
+        location.state?.from ||
+        location.state?.redirectPath ||
+        `${ROUTE_APP}/${ROUTE_DASHBOARD}`
+      }
+      replace
+    />
+  );
 };
 
 export default RootPage;

@@ -16,8 +16,8 @@ interface ExtraPalette {
 }
 
 interface ExtraTheme {
-  foo?: {
-    bar?: boolean;
+  leftMenu?: {
+    width?: number;
   };
 }
 

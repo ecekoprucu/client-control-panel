@@ -1,9 +1,9 @@
 import { createTheme } from "@mui/material/styles";
 import { orange } from "@mui/material/colors";
 
-export const Dark_Theme = createTheme({
+export const Light_Theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
       main: "#1976d2",
     },
@@ -18,4 +18,7 @@ export const Dark_Theme = createTheme({
   typography: {
     fontFamily: "Roboto, sans-serif",
   },
+  leftMenu: {
+    width: 280
+  }
 });

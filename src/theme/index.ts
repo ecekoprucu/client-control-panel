@@ -1,5 +1,5 @@
-import { ENUM_THEME_DARK, ENUM_THEME_LIGHT } from "@/enums/theme"
-import { Light_Theme } from "./lightTheme"
+import { ENUM_THEME_DARK, ENUM_THEME_LIGHT } from "@/enums/theme";
+import { Light_Theme } from "./lightTheme";
 import { Dark_Theme } from "./darkTheme";
 
 export default function getThemeObject (themeCode: string) {
