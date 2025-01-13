@@ -1,7 +1,11 @@
+import { Chart } from "@/views/Dashboard/components/Chart";
 import { TopCard } from "@/views/Dashboard/components/TopCard";
-import { Box, Grid2, Typography } from "@mui/material";
+import { Box, Grid2, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 export const DashboardPage = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
     <Box
       m={2}
@@ -12,7 +16,7 @@ export const DashboardPage = () => {
       borderRadius={2}
     >
       <Typography variant="h3">Dashboard</Typography>
-      <Box display="flex" mt={3}>
+      <Box display="flex" my={3}>
         <Grid2 container spacing={2}>
           <Grid2 size={{ md: 6, lg: 4 }}>
             <TopCard title="Booking" count={1200} info={50} />
@@ -24,6 +28,9 @@ export const DashboardPage = () => {
             <TopCard title="Check Out" count={20000} info={500} />
           </Grid2>
         </Grid2>
+      </Box>
+      <Box width={isSmallScreen ? "100%" : "50%"}>
+        <Chart />
       </Box>
     </Box>
   );

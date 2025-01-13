@@ -18,7 +18,7 @@ export const TopCard = ({ title, count, info }: TopCard) => {
     >
       <Typography color="#7b7777">{title}</Typography>
       <Typography fontWeight={600} fontSize="2rem" color="black">
-        {count}
+        {count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
       </Typography>
       <Typography fontSize="0.85rem" color="gray">
         {title}: <b>{info} days</b>
