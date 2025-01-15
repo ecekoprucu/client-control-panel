@@ -16,6 +16,7 @@ import { ROUTE_APP, ROUTE_CLIENTS } from "@/router/routes";
 
 import { useDispatch } from "react-redux";
 import { logout } from "@/redux/slice/authSlice";
+import { useTranslation } from "react-i18next";
 
 export const LeftMenu = () => {
   const theme = useTheme();
@@ -27,6 +28,8 @@ export const LeftMenu = () => {
   const dispatch = useDispatch();
 
   const { pathname } = location;
+
+  const { t } = useTranslation();
 
   return (
     <Drawer
@@ -64,7 +67,7 @@ export const LeftMenu = () => {
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
-            <ListItemText>Dashboard</ListItemText>
+            <ListItemText>{t("menu.dashboard")}</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem>
@@ -87,7 +90,7 @@ export const LeftMenu = () => {
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
-            <ListItemText>Clients</ListItemText>
+            <ListItemText>{t("menu.clients")}</ListItemText>
           </ListItemButton>
         </ListItem>
       </List>
@@ -107,7 +110,7 @@ export const LeftMenu = () => {
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
-            <ListItemText>Logout</ListItemText>
+            <ListItemText>{t("menu.logout")}</ListItemText>
           </ListItemButton>
         </ListItem>
       </List>

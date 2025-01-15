@@ -1,0 +1,12 @@
+{
+  "common": {
+    "not_available": "{{item}} Not Available",
+    "unknown": "Unknown",
+    "app": "App"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "clients": "Clients",
+    "logout": "Logout"
+  }
+}

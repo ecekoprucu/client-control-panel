@@ -1,0 +1,12 @@
+{
+  "common": {
+    "not_available": "{{item}} Mevcut Değil",
+    "unknown": "Bilinmiyor",
+    "app": "Uygulama"
+  },
+  "menu": {
+    "dashboard": "Ana Sayfa",
+    "clients": "Müşteriler",
+    "logout": "Çıkış Yap"
+  }
+}

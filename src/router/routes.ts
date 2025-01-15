@@ -4,4 +4,3 @@ export const ROUTE_APP = "/app";
 
 // Pages
 export const ROUTE_CLIENTS = "clients";
-

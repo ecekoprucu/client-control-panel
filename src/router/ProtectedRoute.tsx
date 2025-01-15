@@ -17,7 +17,6 @@ function ProtectedRoute({ children }: { children: JSX.Element }) {
 
   const { pathname } = useLocation();
 
-  console.log("protectedroute");
   if (_.isEmpty(user) && _.isEmpty(storedUser)) {
     return (
       <Navigate to={ROUTE_LOGIN} state={{ redirectPath: pathname }} replace />

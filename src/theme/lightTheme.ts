@@ -19,6 +19,6 @@ export const Light_Theme = createTheme({
     fontFamily: "Roboto, sans-serif",
   },
   leftMenu: {
-    width: 280
-  }
+    width: 280,
+  },
 });

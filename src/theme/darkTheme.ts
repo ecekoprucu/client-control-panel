@@ -20,5 +20,5 @@ export const Dark_Theme = createTheme({
   },
   leftMenu: {
     width: 280,
-  }
+  },
 });

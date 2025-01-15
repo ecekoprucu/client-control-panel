@@ -3,6 +3,7 @@ import { LeftMenu } from "@/components/LeftMenu";
 import { Box, Breadcrumbs, Link, Stack, useTheme } from "@mui/material";
 import _ from "lodash";
 import { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
 type AppWrapperProps = {
@@ -15,7 +16,10 @@ export const AppWrapper = ({ children }: AppWrapperProps) => {
   const location = useLocation();
 
   const { pathname } = location;
+
   const segments = pathname.split("/");
+
+  const { t } = useTranslation();
 
   return (
     <Box bgcolor="#f7f7f7" width="100vw" height="100vh" p={2}>
@@ -41,7 +45,11 @@ export const AppWrapper = ({ children }: AppWrapperProps) => {
                   }}
                   key={index}
                 >
-                  {segment === "" ? "Home" : _.capitalize(segment)}
+                  {segment === ""
+                    ? t("menu.dashboard")
+                    : segment === "app"
+                    ? t("common.app")
+                    : _.capitalize(t(`menu.${segment}`))}
                 </Link>
               );
             })}
