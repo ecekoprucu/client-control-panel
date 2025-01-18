@@ -8,5 +8,12 @@
     "dashboard": "Ana Sayfa",
     "clients": "Müşteriler",
     "logout": "Çıkış Yap"
+  },
+  "views": {
+    "dashboard": {
+      "calendar": {
+        "this_week": "Seçili Hafta"
+      }
+    }
   }
 }

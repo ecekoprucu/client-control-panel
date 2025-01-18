@@ -8,5 +8,12 @@
     "dashboard": "Dashboard",
     "clients": "Clients",
     "logout": "Logout"
+  },
+  "views": {
+    "dashboard": {
+      "calendar": {
+        "this_week": "Selected Week"
+      }
+    }
   }
 }
