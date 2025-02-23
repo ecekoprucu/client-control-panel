@@ -1,9 +1,20 @@
-import { Box, ButtonBase, Grid2, Typography } from "@mui/material";
+import { Box, ButtonBase, Dialog, Grid2, Typography } from "@mui/material";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { isSameDay } from "date-fns";
+import { isAfter, isBefore, isSameDay } from "date-fns";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { CustomerCard } from "@/views/Dashboard/components/Calendar/CustomerCard";
+import {
+  ENUM_CANCELED,
+  ENUM_CHECKED_IN,
+  ENUM_CONFRIMED,
+  ENUM_PENDING,
+} from "@/views/Dashboard/components/Calendar/enums";
+import {
+  CustomerDialogInfo,
+  Reservation,
+} from "@/views/Dashboard/components/Calendar/types";
+import { CustomerDialog } from "@/views/Dashboard/components/Calendar/CustomerDialog";
 
 export const Calendar = () => {
   const [baseDate, setBaseDate] = useState(new Date());
@@ -12,22 +23,20 @@ export const Calendar = () => {
     {
       reservation_id: 1,
       guest_name: "Alice Johnson",
-      check_in: "2025-01-19",
-      check_out: "2025-02-15",
+      check_in: "2025-02-23",
+      check_out: "2025-02-25",
       room_type: "Deluxe Suite",
       number_of_guests: 2,
-      price_per_night: 250,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 2,
       guest_name: "Michael Smith",
-      check_in: "2025-01-19",
-      check_out: "2025-02-05",
+      check_in: "2025-02-24",
+      check_out: "2025-02-25",
       room_type: "Standard Room",
       number_of_guests: 1,
-      price_per_night: 100,
-      status: "Cancelled",
+      status: ENUM_CANCELED,
     },
     {
       reservation_id: 3,
@@ -36,8 +45,7 @@ export const Calendar = () => {
       check_out: "2025-01-25",
       room_type: "King Room",
       number_of_guests: 2,
-      price_per_night: 150,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 4,
@@ -46,8 +54,7 @@ export const Calendar = () => {
       check_out: "2025-05-15",
       room_type: "Double Room",
       number_of_guests: 3,
-      price_per_night: 180,
-      status: "Pending",
+      status: ENUM_PENDING,
     },
     {
       reservation_id: 5,
@@ -56,18 +63,16 @@ export const Calendar = () => {
       check_out: "2025-06-06",
       room_type: "Family Suite",
       number_of_guests: 4,
-      price_per_night: 300,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 6,
       guest_name: "Noah Miller",
-      check_in: "2025-07-01",
-      check_out: "2025-07-04",
+      check_in: "2025-02-11",
+      check_out: "2025-02-14",
       room_type: "Standard Room",
       number_of_guests: 2,
-      price_per_night: 120,
-      status: "Checked In",
+      status: ENUM_CHECKED_IN,
     },
     {
       reservation_id: 7,
@@ -76,8 +81,7 @@ export const Calendar = () => {
       check_out: "2025-08-12",
       room_type: "Suite",
       number_of_guests: 2,
-      price_per_night: 220,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 8,
@@ -86,8 +90,7 @@ export const Calendar = () => {
       check_out: "2025-09-10",
       room_type: "Queen Room",
       number_of_guests: 3,
-      price_per_night: 180,
-      status: "Cancelled",
+      status: ENUM_CANCELED,
     },
     {
       reservation_id: 9,
@@ -96,8 +99,7 @@ export const Calendar = () => {
       check_out: "2025-10-18",
       room_type: "Deluxe Room",
       number_of_guests: 2,
-      price_per_night: 200,
-      status: "Pending",
+      status: ENUM_PENDING,
     },
     {
       reservation_id: 10,
@@ -106,8 +108,7 @@ export const Calendar = () => {
       check_out: "2025-11-03",
       room_type: "Economy Room",
       number_of_guests: 1,
-      price_per_night: 80,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 11,
@@ -116,8 +117,7 @@ export const Calendar = () => {
       check_out: "2025-11-25",
       room_type: "Penthouse Suite",
       number_of_guests: 2,
-      price_per_night: 500,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 12,
@@ -126,8 +126,7 @@ export const Calendar = () => {
       check_out: "2025-12-15",
       room_type: "Standard Room",
       number_of_guests: 1,
-      price_per_night: 90,
-      status: "Pending",
+      status: ENUM_PENDING,
     },
     {
       reservation_id: 13,
@@ -136,8 +135,7 @@ export const Calendar = () => {
       check_out: "2025-12-25",
       room_type: "Luxury Suite",
       number_of_guests: 3,
-      price_per_night: 350,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 14,
@@ -146,8 +144,7 @@ export const Calendar = () => {
       check_out: "2026-01-03",
       room_type: "Standard Room",
       number_of_guests: 2,
-      price_per_night: 110,
-      status: "Checked In",
+      status: ENUM_CHECKED_IN,
     },
     {
       reservation_id: 15,
@@ -156,8 +153,7 @@ export const Calendar = () => {
       check_out: "2026-01-20",
       room_type: "Deluxe Room",
       number_of_guests: 4,
-      price_per_night: 200,
-      status: "Pending",
+      status: ENUM_PENDING,
     },
     {
       reservation_id: 16,
@@ -166,8 +162,7 @@ export const Calendar = () => {
       check_out: "2026-02-10",
       room_type: "King Room",
       number_of_guests: 1,
-      price_per_night: 150,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 17,
@@ -176,8 +171,7 @@ export const Calendar = () => {
       check_out: "2026-03-07",
       room_type: "Suite",
       number_of_guests: 2,
-      price_per_night: 250,
-      status: "Cancelled",
+      status: ENUM_CANCELED,
     },
     {
       reservation_id: 18,
@@ -186,8 +180,7 @@ export const Calendar = () => {
       check_out: "2026-04-03",
       room_type: "Queen Room",
       number_of_guests: 2,
-      price_per_night: 180,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 19,
@@ -196,8 +189,7 @@ export const Calendar = () => {
       check_out: "2026-05-20",
       room_type: "Penthouse Suite",
       number_of_guests: 5,
-      price_per_night: 550,
-      status: "Checked In",
+      status: ENUM_CHECKED_IN,
     },
     {
       reservation_id: 20,
@@ -206,8 +198,7 @@ export const Calendar = () => {
       check_out: "2026-06-15",
       room_type: "Family Suite",
       number_of_guests: 4,
-      price_per_night: 320,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 21,
@@ -216,8 +207,7 @@ export const Calendar = () => {
       check_out: "2026-07-05",
       room_type: "Economy Room",
       number_of_guests: 2,
-      price_per_night: 85,
-      status: "Cancelled",
+      status: ENUM_CANCELED,
     },
     {
       reservation_id: 22,
@@ -226,8 +216,7 @@ export const Calendar = () => {
       check_out: "2026-08-07",
       room_type: "Standard Room",
       number_of_guests: 2,
-      price_per_night: 120,
-      status: "Pending",
+      status: ENUM_PENDING,
     },
     {
       reservation_id: 23,
@@ -236,8 +225,7 @@ export const Calendar = () => {
       check_out: "2026-09-12",
       room_type: "Luxury Suite",
       number_of_guests: 3,
-      price_per_night: 400,
-      status: "Confirmed",
+      status: ENUM_CONFRIMED,
     },
     {
       reservation_id: 24,
@@ -246,7 +234,6 @@ export const Calendar = () => {
       check_out: "2026-10-10",
       room_type: "Deluxe Room",
       number_of_guests: 2,
-      price_per_night: 210,
       status: "Confirmed",
     },
     {
@@ -256,10 +243,14 @@ export const Calendar = () => {
       check_out: "2026-11-05",
       room_type: "Queen Room",
       number_of_guests: 2,
-      price_per_night: 180,
-      status: "Pending",
+      status: ENUM_PENDING,
     },
   ]);
+  const [customerDialogInfo, setCustomerDialogInfo] =
+    useState<CustomerDialogInfo>({
+      isOpen: false,
+      data: null,
+    });
 
   const { i18n, t } = useTranslation();
 
@@ -299,6 +290,17 @@ export const Calendar = () => {
     })} `;
   }, [datesArray, i18n.language]);
 
+  const filteredReservations = useMemo(
+    () =>
+      reservations.filter(
+        (reservation) =>
+          isSameDay(reservation.check_in, selectedDate) ||
+          (isAfter(selectedDate, reservation.check_in) &&
+            isBefore(selectedDate, reservation.check_out))
+      ),
+    [reservations, selectedDate]
+  );
+
   const changeSelectedWeek = useCallback((direction: string) => {
     setBaseDate((prevBaseDate) => {
       const newDate = new Date(prevBaseDate);
@@ -312,7 +314,23 @@ export const Calendar = () => {
       return newDate;
     });
   }, []);
-  console.log(Math.floor(reservations.length / 2), reservations.length);
+
+  const handleCloseCustomerDialog = useCallback(
+    () =>
+      setCustomerDialogInfo((prev) => ({
+        ...prev,
+        isOpen: false,
+      })),
+    []
+  );
+
+  const handleOpenCustomerDialog = useCallback((data: Reservation) => {
+    setCustomerDialogInfo({
+      isOpen: true,
+      data,
+    });
+  }, []);
+
   return (
     <Box>
       <Box display="flex" gap={3}>
@@ -397,19 +415,35 @@ export const Calendar = () => {
         ))}
       </Grid2>
       <Grid2 container maxHeight="30vh" overflow="auto" spacing={0}>
-        {reservations
-          .filter((reservation) =>
-            isSameDay(reservation.check_in, selectedDate)
-          )
-          .map((reservation) => (
-            <Grid2 size={{ xs: 6 }}>
+        {filteredReservations.length === 0 ? (
+          <Grid2 size={{ xs: 12 }}>
+            <Typography align="center" fontWeight={600} color="grey.400">
+              No reservation for the date
+            </Typography>
+          </Grid2>
+        ) : (
+          filteredReservations.map((reservation) => (
+            <Grid2 size={{ xs: 6 }} p={1} key={reservation.reservation_id}>
               <CustomerCard
                 reservation={reservation}
                 setReservations={setReservations}
+                handleOpenCustomerDialog={handleOpenCustomerDialog}
               />
             </Grid2>
-          ))}
+          ))
+        )}
       </Grid2>
+      <Dialog
+        open={customerDialogInfo.isOpen}
+        onClose={handleCloseCustomerDialog}
+        fullWidth
+        maxWidth="xs"
+      >
+        <CustomerDialog
+          reservation={customerDialogInfo.data}
+          onClose={handleCloseCustomerDialog}
+        />
+      </Dialog>
     </Box>
   );
 };

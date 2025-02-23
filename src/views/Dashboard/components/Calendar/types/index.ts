@@ -5,6 +5,10 @@ export type Reservation = {
   check_out: string;
   room_type: string;
   number_of_guests: number;
-  price_per_night: number;
   status: string;
+};
+
+export type CustomerDialogInfo = {
+  isOpen: boolean;
+  data: null | Reservation;
 };
